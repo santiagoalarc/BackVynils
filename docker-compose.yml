@@ -3,7 +3,7 @@ version: "3.8"
 services:
   web:
     build: .
-    command: npm run start
+    command: npm run start:prod
     volumes:
       - /usr/src/app
     environment:
@@ -17,6 +17,7 @@ services:
     networks:
       - default
 
+
   db:
     image: postgres
     environment:
@@ -25,5 +26,11 @@ services:
       - POSTGRES_PASSWORD=postgres
     ports:
       - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      #- ./sql/data.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - default
+
+volumes:
+  pgdata:
