@@ -16,3 +16,17 @@ services:
       - db
     networks:
       - default
+
+
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=vinyls
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - default
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data/
